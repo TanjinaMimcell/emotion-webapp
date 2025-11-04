@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Emotion Detection Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body { padding: 20px; background: #f8f9fa; }
+        #webcam { border: 2px solid #333; width: 640px; height: 480px; }
+        .card { margin: 10px; }
+        .stats { display: flex; flex-wrap: wrap; }
+        table { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Live Emotion Detection Dashboard</h2>
+        <button id="privacyToggle" class="btn btn-warning">Privacy 🔒</button>
+        
+
+    </div>
+
+    <!-- Main Section -->
+    <div class="d-flex">
+        <video id="webcam" autoplay muted></video>
+        <div class="stats">
+            <div class="card p-3">
+                <h5>Total Faces Detected</h5>
+                <p id="totalFaces">0</p>
+            </div>
+            <div class="card p-3">
+                <h5>Correct Predictions</h5>
+                <p id="correctPred">0</p>
+            </div>
+            <div class="card p-3">
+                <h5>Accuracy %</h5>
+                <p id="accuracy">0%</p>
+            </div>
+            <div class="card p-3">
+                <h5>Most Frequent Emotion</h5>
+                <p id="mostEmotion">Neutral</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <table class="table table-striped" id="logsTable">
+        <thead>
+            <tr>
+                <th>Face ID</th>
+                <th>Actual</th>
+                <th>Predicted</th>
+                <th>Correct</th>
+                <th>Accuracy</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <!-- Chart Section -->
+    <canvas id="accuracyChart" width="800" height="400"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'dashboard/main.js' %}"></script>
+</body>
+</html>
